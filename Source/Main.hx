@@ -2,18 +2,27 @@ package;
 
 
 import openfl.display.Sprite;
+import openfl.events.Event;
 
 
-class Main extends Sprite {
+class Main extends Sprite 
+{	
 	
+  public function new () 
+  {	
+    super();
+    init();		
+  }
 	
-	public function new () {
-		
-		super ();
-		
-		
-		
-	}
-	
-	
+  function init():Void
+  {
+
+
+    this.addEventListener(Event.ENTER_FRAME, update);
+  }
+
+  function update():Void
+  {
+    
+  }	
 }
