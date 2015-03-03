@@ -31,7 +31,7 @@ class Quaternion
   {
     return new Quaternion(
       other.a * this.a - other.b * this.b - other.c * this.c - other.d * this.d,
-      other a * this.b + other.b * this.a + other.c * this.d - other.d * this.c,
+      other.a * this.b + other.b * this.a + other.c * this.d - other.d * this.c,
       other.a * this.c - other.b * this.d + other.c * this.a + other.d * this.b,
       other.a * this.d + other.b * this.c - other.c * this.b + other.d * this.a);
   }
