@@ -4,6 +4,8 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.geom.Vector3D;
+import openfl.Assets;
+
 
 class Main extends Sprite 
 {
@@ -11,11 +13,11 @@ class Main extends Sprite
 
   var inited:Bool;
 	
-  var t:Triangle;
+  var cube:Model;
   var cam:Camera;
   var rot:RotQuat;
   var rotSpeed:Float = 0.01;
-  var rotAxis:Vector3D = new Vector3D(0,0,1);
+  var rotAxis:Vector3D = new Vector3D(1,1,1);
 	
   public function new () 
   {	
@@ -28,16 +30,21 @@ class Main extends Sprite
     if(inited) return;
     inited = true;
 
+    trace("Begin Init: ");
+
     screen = new Sprite();
     addChild(screen);
 
     var fps:FPS = new FPS(10, 10, 0x0000ff);
     addChild(fps);
 
-    t = new Triangle(new Vector3D(0,0,0), new Vector3D(1,0,0),
-                     new Vector3D(0,0,1));
+    trace("Begin Asset Loading: ");
+    Assets.loadText("assets/cube.txt", function (_loadedText):Void{
+         cube = new Model(_loadedText);
+         trace("End Asset Loading");});
 
-    t.scale(100);
+ 
+    cube.scale(100);
     
     cam = new Camera(new Vector3D(stage.stageWidth/2,stage.stageHeight/2,500),500);
    
@@ -49,7 +56,7 @@ class Main extends Sprite
   function update(e:Event):Void
   {
     screen.graphics.clear();
-    t.rotate(rot);
-    t.draw(this.screen, cam);
+    cube.rotate(rot);
+    cube.draw(this.screen, cam);
   }	
 }

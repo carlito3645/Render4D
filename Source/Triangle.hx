@@ -3,6 +3,7 @@ package ;
 import openfl.display.Sprite;
 import openfl.geom.Vector3D;
 import openfl.geom.Matrix3D;
+import openfl.Vector;
 
 class Triangle
 {
@@ -19,6 +20,25 @@ class Triangle
     this.one = one;
     this.two = two;
     this.three = three;
+  }
+
+  public function read(s:String)
+  {
+    var string_tokens:Vector<String> = s.split(",");
+
+    if(string_tokens.length != 9) return;
+
+    var i:Int;
+    var tokens:Vector<Float> = new Vector<Float>();
+
+    for(i in 0...9)
+    {
+      tokens.push(Std.parseFloat(string_tokens.get(i)));
+    }
+
+    one = new Vector3D(tokens[0], tokens[1], tokens[2]);
+    two = new Vector3D(tokens[3], tokens[4], tokens[5]);
+    three = new Vector3D(tokens[6], tokens[7], tokens[8]);
   }
 
   public function scale(s:Float):Void
