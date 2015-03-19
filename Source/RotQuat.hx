@@ -4,7 +4,7 @@ import openfl.geom.Vector3D;
 
 class RotQuat
 {
-  var rot:Quaternion;
+  public var rot:Quaternion;
   var angle:Float;
   var axis:Vector3D;
 

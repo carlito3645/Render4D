@@ -12,7 +12,6 @@ class Model
   {
     var strings:Vector<String> = data.split("\n");
     triangles = new Vector<Triangle>();
-    trace("New Object: ");
    
     var s:String;
 

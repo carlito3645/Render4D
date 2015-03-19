@@ -73,5 +73,12 @@ class Quaternion
     d *= s;
   }
 
-  
+  public function toString():String
+  {
+    var out:String = "";
+    
+    out += "(" + a + ", " + b + ", " + c + ", " + d + ")\n";
+    
+    return out;
+  } 
 }
