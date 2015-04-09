@@ -86,11 +86,14 @@ class Model4D
       p = cam.project(p);
       q = cam.project(q);
 
-
-//      if(p.x > 1920 || p.x < 0) continue;
-//      if(q.x > 1920 || q.x < 0) continue;
-//      if(p.y > 1080 || p.y < 0) continue;
-//      if(q.y > 1080 || q.y < 0) continue;
+      if(p.x/p.z > screen.stage.stageWidth){  p.x = screen.stage.stageWidth; p.z = 1;}
+      if(p.x/p.z < 0) p.x = 0;
+      if(q.x/q.z > screen.stage.stageWidth){ q.x = screen.stage.stageWidth; q.z = 1;}
+      if(q.x/q.z < 0) q.x = 0;
+      if(p.y/p.z > screen.stage.stageHeight){ p.y = screen.stage.stageHeight; p.z = 1;}
+      if(p.y/p.z < 0) p.y = 0;
+      if(q.y/q.x > screen.stage.stageHeight){ q.y = screen.stage.stageHeight; q.z = 1;}
+      if(q.y/q.z < 0) q.y = 0;
 
       screen.graphics.moveTo(p.x/p.z, p.y/p.z);
       screen.graphics.lineTo(q.x/q.z, q.y/q.z);

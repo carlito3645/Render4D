@@ -73,6 +73,14 @@ class Quaternion
     d *= s;
   }
 
+  public function stereoProj():Vector3D
+  {
+    var rad:Float = this.norm();
+    var p:Vector3D = new Vector3D(a/(rad-d), b/(rad-d), c/(rad-d));
+ 
+    return p;
+  }
+
   public function toString():String
   {
     var out:String = "";
