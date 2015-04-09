@@ -77,11 +77,9 @@ class Grid4D
     
     for(point in world_coords)
     {
-      var rad:Float = point.norm();
-      var p:Vector3D = new Vector3D(point.a/(rad - point.d), point.b/(rad - point.d), 
-                                    point.c/(rad - point.d));
+      var p:Vector3D = point.stereoProj();
 
-      p.scaleBy(length);
+
 
       p = cam.pos.subtract(p);
       p = cam.project(p);
@@ -89,30 +87,26 @@ class Grid4D
       screen.graphics.drawRect(p.x/p.z - 2.5, p.y/p.z - 2.5, 5.0, 5.0);
     }
 
-    var x:Int;
+    var x:Int, y:Int, z:Int, w:Int;
+    var p:Vector3D, q:Vector3D;
+    var point:Quaternion;
     for(x in 0...(points.length))
     {
-      var y:Int;
       for(y in 0...(points[x].length))
       {
-        var z:Int;
         for(z in 0...(points[x][y].length))
         {
-          var w:Int;
           for(w in 0...(points[x][y][z].length))
           {
-            var point = points[x][y][z][w];
+            point = points[x][y][z][w];
 
-            var p:Vector3D = point.stereoProj();
-            p.scaleBy(length);
+            p = point.stereoProj();
             p = cam.pos.subtract(p);
             p = cam.project(p);
 
-            var q:Vector3D;
             if(x+1 < points.length)
             {
               q = points[x+1][y][z][w].stereoProj();
-              q.scaleBy(length);
               q = cam.pos.subtract(q);
               q = cam.project(q);
 
@@ -122,7 +116,6 @@ class Grid4D
             if(y+1 < points[x].length)
             {
               q = points[x][y+1][z][w].stereoProj();
-              q.scaleBy(length);
               q = cam.pos.subtract(q);
               q = cam.project(q);
 
@@ -132,7 +125,6 @@ class Grid4D
             if(z+1 < points[x][y].length)
             {
               q = points[x][y][z+1][w].stereoProj();
-              q.scaleBy(length);
               q = cam.pos.subtract(q);
               q = cam.project(q);
 
@@ -142,7 +134,6 @@ class Grid4D
             if(w+1 < points[x][y][z].length)
             {
               q = points[x][y][z][w+1].stereoProj();
-              q.scaleBy(length);
               q = cam.pos.subtract(q);
               q = cam.project(q);
 

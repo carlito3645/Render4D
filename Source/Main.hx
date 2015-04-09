@@ -82,7 +82,7 @@ class Main extends Sprite
     rightRot = new RotQuat(rightRotSpeed, rightRotAxis);
 */
     grid = new Grid(5, 6, 7, 50.0);
-    hypergrid = new Grid4D(5, 3, 2, 4, 50.0);
+    hypergrid = new Grid4D(3, 3, 3, 3, 100.0);
 
     pos = new Vector3D(0, 0, 0);
     worldPos = grid.getPos(Std.int(pos.x), Std.int(pos.y), Std.int(pos.z));
@@ -128,6 +128,7 @@ class Main extends Sprite
     this.screen.graphics.lineStyle(1.0, 0xFA0000, 1.0);
     this.screen.graphics.drawCircle(p.x/p.z, p.y/p.z,10.0);
 */
+    this.screen.graphics.clear();
     hypergrid.draw(this.screen, cam);
  
     frameCount++;

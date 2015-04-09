@@ -76,7 +76,8 @@ class Quaternion
   public function stereoProj():Vector3D
   {
     var rad:Float = this.norm();
-    var p:Vector3D = new Vector3D(a/(rad-d), b/(rad-d), c/(rad-d));
+    var p:Vector3D = new Vector3D(rad * a/(rad-d),rad * b/(rad-d), rad * c/(rad-d));
+
  
     return p;
   }
